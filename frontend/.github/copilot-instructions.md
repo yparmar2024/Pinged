@@ -1,59 +1,49 @@
 <!-- Copilot instructions for the Pinged frontend (Expo + TypeScript) -->
 
-# Copilot instructions — frontend
+```markdown
+<!-- Copilot instructions for the Pinged frontend (Expo + TypeScript) -->
 
-Short, actionable notes to help an AI assistant make productive code changes in this Expo + React Native (expo-router) TypeScript project.
+# Copilot instructions — frontend (concise)
 
-- Project type: Expo app using expo-router + React Navigation. Entry point is `app/` (file-based routing). TypeScript config uses the `@/*` path alias to root.
-- Run & dev: use `npm run start` (maps to `expo start`). Platform flags: `npm run ios`, `npm run android`, `npm run web`.
-- Quick reset: `npm run reset-project` runs `scripts/reset-project.js` and will move existing app files to `app-example` or delete them (prompted).
+Short, actionable facts to help an AI agent make safe, useful changes in this Expo + TypeScript app.
 
-Key architectural notes
+- Project entry: file-based routing lives in `app/`. Top-level layouts: `app/_layout.tsx` and `app/(tabs)/_layout.tsx`.
+- Scripts: see `package.json` — use `npm run start|ios|android|web`. Reset helper: `npm run reset-project` -> `scripts/reset-project.js` (interactive; may move `app/` to `app-example`).
+- Path alias: imports use `@/` (root). Update `tsconfig.json` if changing aliases and adjust IDE settings.
 
-- Routing: File-based routing under `app/` (see `app/_layout.tsx` and `(tabs)/_layout.tsx`). Modals are ordinary routes (e.g. `app/modal.tsx`) and are wired in `app/_layout.tsx` via Stack screens.
-- Theming: App uses a simple theme system. See `constants/theme.ts`, `hooks/use-color-scheme.ts`, and `hooks/use-theme-color.ts`. Components use `@/components/themed-*` helpers to pick light/dark colors.
-- Icons: Uses SF Symbols names in code but maps to MaterialIcons for Android/Web in `components/ui/icon-symbol.tsx`. When adding new SF Symbol names, update the MAPPING there.
-- Native vs Web: Platform-specific behavior exists (e.g. `use-color-scheme.web.ts` for hydration, `icon-symbol.ios.tsx` fallback file). Prefer cross-platform-safe APIs unless implementing platform-specific files.
-- Firebase: `firebase` is a dependency but `config/firebaseConfig.ts` is empty. If integrating Firebase, follow Expo web/native considerations (do not commit secrets; prefer env files and `process.env` with build-time injection).
+Key patterns & files (check these before editing)
 
-Project conventions and patterns
+- Theming: `constants/theme.ts`, `hooks/use-color-scheme.ts`, `hooks/use-theme-color.ts`, `components/themed-text.tsx`, `components/themed-view.tsx`. Prefer these for colors instead of hardcoded values.
+- Routing & navigation: `app/_layout.tsx`, `app/(tabs)/_layout.tsx`, `app/(tabs)/index.tsx`. Add screens by creating files under `app/` (e.g., `app/screens/MyFeature.tsx` or `app/(tabs)/myfeature.tsx`) and register Tabs in `(tabs)/_layout.tsx`.
+- Icons: SF Symbol names are used and translated in `components/ui/icon-symbol.tsx` via a MAPPING to platform icons — update MAPPING when adding new symbol names.
+- Tabs & haptics: Tab bar uses `components/haptic-tab.tsx` as `tabBarButton` — follow its props when adding custom tab buttons.
+- Firebase: `config/firebase.ts` initializes Firebase from EXPO_PUBLIC_* env vars. Do not hardcode secrets; use environment variables and add local env files to `.gitignore`.
 
-- Absolute imports use `@/` root alias (configured in `tsconfig.json`). Use `@/components/...`, `@/hooks/...`, etc.
-- UI primitives: `ThemedView` and `ThemedText` are used pervasively. Prefer them for new screens to ensure correct theming.
-- Tab bar: Tabs use a custom `HapticTab` button (see `components/haptic-tab.tsx`). When adding tabs, wire icons via `components/ui/icon-symbol.tsx`.
-- Styling: Inline StyleSheet objects are used frequently. Keep component styles local and small; follow existing style keys (e.g., `titleContainer`, `stepContainer`).
-- Code generation / resets: Avoid editing `scripts/reset-project.js` unless intentionally changing reset behavior. The starter intends to be forked as a template.
+Developer commands & quick checks
 
-Examples (how to make small, correct edits)
+- Install: `npm ci` (project expects Node 18+).
+- Start: `npm run start` (or `npm run ios|android|web`).
+- Lint: `npm run lint` (expo lint).
+- If native errors appear: run `expo doctor` and verify `react-native-reanimated` is imported where required.
 
-- Add a new screen route: create `app/screens/MyFeature.tsx` and export a default component. To add a tab, create `app/(tabs)/myfeature.tsx` and add a `Tabs.Screen` entry in `(tabs)/_layout.tsx`.
-- Use themed colors: const bg = useThemeColor({ light: 'white', dark: 'black' }, 'background') or use `ThemedView`.
-- Add an icon mapping: update `MAPPING` in `components/ui/icon-symbol.tsx` mapping SF names to Material icon names.
+Project-specific gotchas
 
-Developer workflows & commands (macOS / zsh)
+- `@/` imports: renaming paths or moving files commonly breaks many imports — run a global search after refactors.
+- Reanimated: avoid moving or duplicating the reanimated import; keep any side-effect imports near root layout if present.
+- Firebase: `config/firebase.ts` uses EXPO_PUBLIC_* env vars (see file); it's hot-reload safe (uses `getApps()` guard).
 
-- Install: `npm ci` (uses package-lock.json). Project expects Node 18+.
-- Start dev server: `npm run start` (open Expo UI) or `npm run ios` / `npm run android` / `npm run web`.
-- Lint: `npm run lint` (runs `expo lint`).
-- Reset app template: `npm run reset-project` (interactive; moves current `app/` to `app-example`).
+Examples (concrete)
 
-Edges & gotchas an AI should watch for
+- Add a tab screen: create `app/(tabs)/new.tsx` exporting default component, then add a `<Tabs.Screen name="new" .../>` entry in `app/(tabs)/_layout.tsx` using `IconSymbol` for icons.
+- Use themed color: `const bg = useThemeColor({ light: 'white', dark: 'black' }, 'background')` or wrap with `<ThemedView>`.
+- Add icon mapping: edit `components/ui/icon-symbol.tsx` MAPPING to map a new SF name to Material icon name.
 
-- There are no test suites in this repo. Any change should be validated by running the Expo dev server locally.
-- `config/firebaseConfig.ts` is present but empty — don't assume Firebase is configured yet. If adding keys, use env vars and add `.env*.local` to `.gitignore`.
-- Many components rely on the `@/` path alias; updating tsconfig paths requires coordinating IDE settings and imports.
-- Reanimated and native modules: `react-native-reanimated` is installed and imported once in `app/_layout.tsx` (`'react-native-reanimated'`). Keep its import at top-level in layout to avoid runtime issues.
+When in doubt
 
-Files to inspect for context when changing code
+- Run the app locally and visually verify UI changes (no test suite present).
+- Ask the repo owner before changing `scripts/reset-project.js` or build-time configuration.
 
+Keep edits short and reference files above. Ask for any missing context.
+
+```
 - Routing & layout: `app/_layout.tsx`, `app/(tabs)/_layout.tsx`, `app/(tabs)/index.tsx`
-- Theming: `constants/theme.ts`, `hooks/use-theme-color.ts`, `components/themed-*` files
-- Utilities & platform helpers: `components/ui/icon-symbol.tsx`, `components/haptic-tab.tsx`
-- Project scripts: `package.json`, `scripts/reset-project.js`
-
-If uncertain, run these checks locally
-
-- Start Expo dev server and open the platform (iOS/Android/Web) to verify UI changes.
-- Run `expo doctor` from the repo root if native module errors appear.
-
-If you update this file: try to keep it short and include concrete file references or command examples. Ask the repo owner before changing global build or reset scripts.
