@@ -1,18 +1,37 @@
-# Pinged
+# Pinged - Frontend
 
-**Pinged** is a swipe-based connection app designed to make meeting new people easier and more natural than cold messaging.  
-Instead of reaching out through awkward DMs, users can swipe through profiles and connect when there’s mutual interest — similar to how dating apps streamline matching, but for general social or professional networking.
-
-### 💡 What It Does
-- Lets users **create profiles** and **discover others nearby or within their network**
-- Uses a **swipe interface** to express interest and match with people
-- Opens a **chat** only when both users swipe right — encouraging more meaningful connections
-- Aims to make connecting **faster, friendlier, and less intimidating** than traditional outreach
-
-### 🎯 Goal
-To remove the friction of starting conversations by replacing cold messages with warm, mutual connections.
+This repository contains the **React Native frontend** for Pinged.
 
 ---
 
-> Built by **Yash Parmar** & **Nikunj Patel**
-> [github.com/yparmar2024](https://github.com/yparmar2024) & [github.com/nikunjpatel5136](https://github.com/nikunjpatel5136)
+## ⚙️ Setup & Run Locally
+
+### 1. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 2. Start development server
+```bash
+npx expo start
+```
+
+- Opens Expo Developer Tools in your browser
+- Run on Expo Go (mobile), iOS simulator, or Android emulator
+
+### 3. Run on simulator or device
+
+- iOS:
+```bash
+npx expo run:ios
+```
+
+- Android:
+```bash
+npx expo run:android
+```
+
+Requirements: Node.js, npm or yarn, and Expo CLI installed.
