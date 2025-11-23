@@ -1,3 +1,4 @@
+<!-- frontend/README.md -->
 # Pinged - Frontend
 
 This repository contains the **React Native frontend** for Pinged.

@@ -1,4 +1,4 @@
-// config/firebase.ts
+// frontend/config/firebase.ts
 import { initializeApp, getApps, getApp } from "firebase/app";
 
 // Firebase configuration from environment variables

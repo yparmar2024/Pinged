@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// frontend/scripts/reset-project.js
 
 /**
  * This script is used to reset the project to a blank state.

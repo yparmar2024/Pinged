@@ -1,3 +1,4 @@
+# <!-- README.md -->
 # Pinged
 
 **Pinged** is a swipe-based connection app designed to make meeting new people easier and more natural than cold messaging.  

@@ -1,5 +1,7 @@
+// frontend/app/_layout.tsx
+
 import { useEffect } from "react";
-import app from "../config/firebase";
+import { app } from "../config/firebase";
 import { Slot } from "expo-router";
 
 export default function RootLayout() {

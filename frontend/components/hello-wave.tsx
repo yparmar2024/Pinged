@@ -1,3 +1,4 @@
+// frontend/components/hello-wave.tsx
 import Animated from 'react-native-reanimated';
 
 export function HelloWave() {
