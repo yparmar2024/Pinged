@@ -1,50 +1,19 @@
-# Welcome to your Expo app 👋
+# <!-- README.md -->
+# Pinged
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Pinged** is a swipe-based connection app designed to make meeting new people easier and more natural than cold messaging.  
+Instead of reaching out through awkward DMs, users can swipe through profiles and connect when there’s mutual interest — similar to how dating apps streamline matching, but for general social or professional networking.
 
-## Get started
+### 💡 What It Does
+- Lets users **create profiles** and **discover others nearby or within their network**
+- Uses a **swipe interface** to express interest and match with people
+- Opens a **chat** only when both users swipe right — encouraging more meaningful connections
+- Aims to make connecting **faster, friendlier, and less intimidating** than traditional outreach
 
-1. Install dependencies
+### 🎯 Goal
+To remove the friction of starting conversations by replacing cold messages with warm, mutual connections.
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+> Built by **Yash Parmar** & **Nikunj Patel**
+> [github.com/yparmar2024](https://github.com/yparmar2024) & [github.com/nikunjpatel5136](https://github.com/nikunjpatel5136)
