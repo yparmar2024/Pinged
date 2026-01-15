@@ -1,5 +1,6 @@
 // Import redirecting via Authentication context and tab navigator
-import { Redirect, Tabs } from 'expo-router';
+import { Redirect } from 'expo-router';
+import { Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
 import { ActivityIndicator, View } from 'react-native';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -24,12 +25,48 @@ export default function TabsLayout() {
 
     // Render tab navigator if user is authenticated
     return (
-        <Tabs screenOptions={{ headerShown: false }} >
-            <Tabs.Screen name="index" options={{ title: 'Home' }} />
-            <Tabs.Screen name="events" options={{ title: 'Events' }} />
-            <Tabs.Screen name="swipe" options={{ title: 'Swipe' }} />
-            <Tabs.Screen name="chat" options={{ title: 'Chat' }} />
-            <Tabs.Screen name="profile" options={{ title: 'Profile' }} />
-        </Tabs>
+    <NativeTabs
+    tintColor="#FF3C38">
+      <NativeTabs.Trigger name="index">
+        <Label>Home</Label>
+        <Icon sf={{
+            default: "house",
+            selected: "house.fill"
+         }}
+         drawable="ic_home_black_24dp" />
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="events">
+        <Icon sf={{
+            default: "party.popper",
+            selected: "party.popper.fill"
+        }}
+        drawable="ic_event_note_black_24dp" />
+        <Label>Events</Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="swipe">
+        <Icon sf={{
+            default: "square.on.square",
+            selected: "square.on.square"
+         }}
+         drawable="ic_layers_black_24dp" />
+        <Label>Swipe</Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="chat">
+        <Icon sf={{
+            default: "text.bubble",
+            selected: "text.bubble.fill"
+        }}
+        drawable="ic_chat_bubble_black_24dp" />
+        <Label>Chat</Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="profile">
+        <Icon sf={{
+            default: "person",
+            selected: "person.fill"
+        }}
+        drawable="ic_person_black_24dp" />
+        <Label>Profile</Label>
+      </NativeTabs.Trigger>
+    </NativeTabs>
     );
 }
