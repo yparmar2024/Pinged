@@ -42,5 +42,6 @@ app-example
 /ios
 /android
 
+# sensitive files
 google-services.json
 GoogleService-Info.plist
