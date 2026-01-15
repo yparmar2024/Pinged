@@ -4,7 +4,7 @@
     "strict": true,
     "paths": {
       "@firebase/auth": [
-        "./node_modules/firebase/auth/dist/index.esm.js" // getReactNativePersistence fix
+        "./node_modules/@firebase/auth/dist/index.rn.d.ts" // getReactNativePersistence fix
       ],
       "@/*": [
         "./*"

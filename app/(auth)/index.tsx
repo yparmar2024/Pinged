@@ -8,15 +8,8 @@ import {
   signInWithCredential
 } from 'firebase/auth';
 import { useState } from 'react';
-import {
-  Alert,
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import { Alert, Image, Platform, View } from 'react-native';
+import { Button, Loading } from '../../components';
 import { auth } from '../../config/firebase';
 import { handleError } from '../../utils/errorHandler';
 
@@ -117,140 +110,47 @@ export default function AuthScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={{ flex: 1, backgroundColor: '#F8F9FA' }}>
       {/* Logo Section */}
-      <View style={styles.logoContainer}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingTop: 60 }}>
         <Image
-          source={require('../../assets/images/logo.png')}
-          style={styles.logo}
+          source={require('../../assets/pinged/pinged_slogan_transparent.png')}
+          style={{ width: 500, height: 500 }}
           resizeMode="contain"
         />
       </View>
 
       {/* Buttons Section */}
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, styles.appleButton]}
+      <View style={{ paddingHorizontal: 24, paddingBottom: Platform.OS === 'ios' ? 50 : 40, gap: 16 }}>
+        <Button
+          title="Continue with Apple"
           onPress={handleAppleSignIn}
+          variant="apple"
+          fullWidth
           disabled={loading}
-        >
-          <View style={styles.buttonContent}>
-            <Image
-              source={require('../../assets/images/apple_logo.png')}
-              style={styles.buttonIcon}
-              resizeMode="contain"
-            />
-            <Text style={[styles.buttonText, styles.appleButtonText]}>
-              Continue with Apple
-            </Text>
-          </View>
-        </TouchableOpacity>
+          icon={require('../../assets/social/apple_logo.png')}
+        />
 
-        <TouchableOpacity
-          style={[styles.button, styles.googleButton]}
+        <Button
+          title="Continue with Google"
           onPress={handleGoogleSignIn}
+          variant="google"
+          fullWidth
           disabled={loading}
-        >
-          <View style={styles.buttonContent}>
-            <Image
-              source={require('../../assets/images/google_logo.png')}
-              style={styles.buttonIcon}
-              resizeMode="contain"
-            />
-            <Text style={[styles.buttonText, styles.googleButtonText]}>
-              Continue with Google
-            </Text>
-          </View>
-        </TouchableOpacity>
+          icon={require('../../assets/social/google_logo.png')}
+        />
 
-        <TouchableOpacity
-          style={[styles.button, styles.emailButton]}
+        <Button
+          title="Continue with Email"
           onPress={handleEmailSignIn}
+          variant="primary"
+          fullWidth
           disabled={loading}
-        >
-          <View style={styles.buttonContent}>
-            <Image
-              source={require('../../assets/images/email_logo.png')}
-              style={styles.buttonIcon}
-              resizeMode="contain"
-            />
-            <Text style={[styles.buttonText, styles.emailButtonText]}>
-              Continue with Email
-            </Text>
-          </View>
-        </TouchableOpacity>
+          icon={require('../../assets/social/email_logo.png')}
+        />
       </View>
+
+      {loading && <Loading fullScreen text="Signing in..." />}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-  },
-  logoContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 60,
-  },
-  logo: {
-    width: 200,
-    height: 200,
-  },
-  buttonContainer: {
-    paddingHorizontal: 24,
-    paddingBottom: Platform.OS === 'ios' ? 50 : 40,
-    gap: 16,
-  },
-  button: {
-    height: 56,
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-    flexDirection: 'row',
-    paddingHorizontal: 0,
-  },
-  buttonContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-  },
-  buttonIcon: {
-    width: 24,
-    height: 24,
-    marginRight: 12,
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  appleButton: {
-    backgroundColor: '#000000',
-  },
-  appleButtonText: {
-    color: '#FFFFFF',
-  },
-  googleButton: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 1,
-    borderColor: '#E0E0E0',
-  },
-  googleButtonText: {
-    color: '#000000',
-  },
-  emailButton: {
-    backgroundColor: '#007AFF',
-  },
-  emailButtonText: {
-    color: '#FFFFFF',
-  },
-});
