@@ -1,9 +1,9 @@
-import { Text, View } from 'react-native';
+import { Text, View } from "react-native";
 
 export default function Profile() {
-    return (
-        <View>
-            <Text>Welcome to the Profile Screen!</Text>
-        </View>
-    )
+  return (
+    <View style={{ flex: 1, paddingHorizontal: 21, paddingVertical: 64 }}>
+      <Text>Welcome to the Profile Screen!</Text>
+    </View>
+  );
 }

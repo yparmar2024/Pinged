@@ -1,3 +1,4 @@
+// Import necessary modules and components
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as AuthSession from 'expo-auth-session';
 import * as Crypto from 'expo-crypto';
@@ -13,9 +14,11 @@ import { Button, Loading } from '../../components';
 import { auth } from '../../config/firebase';
 import { handleError } from '../../utils/errorHandler';
 
+// Create authentication screen component
 export default function AuthScreen() {
   const [loading, setLoading] = useState(false);
 
+  // Handle Google Sign-In
   const handleGoogleSignIn = async () => {
     setLoading(true);
     try {
@@ -48,6 +51,7 @@ export default function AuthScreen() {
         }
       });
     } catch (error: any) {
+      // Log and handle errors
       console.error('Google Sign-In Error:', error);
       const { title, message } = handleError(error);
       Alert.alert(title, message);
@@ -56,6 +60,7 @@ export default function AuthScreen() {
     }
   };
 
+  // Handle Apple Sign-In
   const handleAppleSignIn = async () => {
     setLoading(true);
     try {
@@ -105,10 +110,12 @@ export default function AuthScreen() {
     }
   };
 
+  // Handle Email Sign-In navigation
   const handleEmailSignIn = () => {
     router.push('/(auth)/email');
   };
 
+  // Render authentication screen UI
   return (
     <View style={{ flex: 1, backgroundColor: '#F8F9FA' }}>
       {/* Logo Section */}

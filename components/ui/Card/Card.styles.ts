@@ -1,15 +1,15 @@
-import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { Dimensions, Platform, StyleSheet } from "react-native";
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   card: {
     borderRadius: 16,
-    backgroundColor: '#FFFFFF',
-    overflow: 'hidden',
+    backgroundColor: "#F8F9FA",
+    overflow: "hidden",
     ...Platform.select({
       ios: {
-        shadowColor: '#FF3C38',
+        shadowColor: "#FF3C38",
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.08,
         shadowRadius: 12,
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     ...Platform.select({
       ios: {
-        shadowColor: '#FF3C38',
+        shadowColor: "#FF3C38",
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.12,
         shadowRadius: 16,
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   elevatedCard: {
     ...Platform.select({
       ios: {
-        shadowColor: '#FF3C38',
+        shadowColor: "#FF3C38",
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.15,
         shadowRadius: 20,
@@ -50,16 +50,16 @@ export const styles = StyleSheet.create({
     }),
   },
   imageContainer: {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
+    position: "relative",
+    width: "100%",
+    height: "100%",
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
   imageOverlay: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,

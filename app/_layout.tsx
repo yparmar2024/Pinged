@@ -1,48 +1,36 @@
 // Import necessary modules and components
-import { Slot, useRouter, useSegments } from 'expo-router';
-import { useEffect } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { AuthProvider, useAuth } from '../contexts/AuthContext';
+import { Slot, useRouter, useSegments } from "expo-router";
+import { useEffect } from "react";
+import { Loading } from "../components/common/Loading/Loading";
+import { AuthProvider, useAuth } from "../contexts/AuthContext";
 
 // Create a root layout component that wraps the app with AuthProvider and routes accordingly
 function RootLayoutNav() {
-    // Declare authentication state and routing hooks
-    const { user, loading } = useAuth();
-    const segments = useSegments();
-    const router = useRouter();
+  // Declare authentication state and routing hooks
+  const { user, loading } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
 
-    useEffect(() => {
-        if (loading) return;
+  // Effect to handle routing based on authentication state
+  useEffect(() => {
+    if (loading) return;
 
-        const inAuthGroup = segments[0] === '(auth)';
+    const inAuthGroup = segments[0] === "(auth)";
 
-        if (!user && !inAuthGroup) {
-            router.replace('/(auth)');
-        } else if (user && inAuthGroup) {
-            router.replace('/(tabs)');
-        }
-    }, [user, loading, router, segments]);
-    
-    if (loading) {
-        return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#007AFF" />
-            </View>
-        );
+    if (!user && !inAuthGroup) {
+      router.replace("/(auth)");
+    } else if (user && inAuthGroup) {
+      router.replace("/(tabs)");
     }
+  }, [user, loading, router, segments]);
 
-    return <Slot />;
+  // Show loading indicator while authentication state is being determined
+  if (loading) return <Loading fullScreen text="Loading..." />;
+
+  return <Slot />;
 }
 
-const styles = StyleSheet.create({
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F8F9FA',
-  },
-});
-
+// Export the main root layout component
 export default function RootLayout() {
   return (
     <AuthProvider>
